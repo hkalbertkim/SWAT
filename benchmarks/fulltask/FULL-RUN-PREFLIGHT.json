@@ -1,0 +1,25 @@
+{
+  "status": "BLOCKED_AT_SECURE_SCALABLE_EXECUTION",
+  "suites": [
+    {
+      "suite": "SWE-bench Pro V2",
+      "source_commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+      "manifest": "swebench_pro_v2_full642.json",
+      "task_count": 642,
+      "expected_runs": 3852
+    },
+    {
+      "suite": "Terminal-Bench 2.0",
+      "source_commit": "2fd12b88aafdd04a52c298e3940bcb189f9766d6",
+      "manifest": "terminal_bench2_full89.json",
+      "task_count": 89,
+      "expected_runs": 534
+    }
+  ],
+  "total_distinct_tasks": 731,
+  "expected_agent_executions": 4386,
+  "prepared_jobs": 4,
+  "provider": "docker",
+  "model": "gpt-5.6",
+  "reason_not_executing": "No approved credential-isolated scalable worker and verified official grader"
+}
