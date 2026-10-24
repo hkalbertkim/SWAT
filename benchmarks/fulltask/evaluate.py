@@ -27,18 +27,21 @@ def calculate(rows):
         a=sum(metric(v["baseline"]) for v in complete)
         b=sum(metric(v["swat"]) for v in complete)
         return {"baseline":a,"swat":b,"ratio":round(a/b,3) if b>0 else None}
-    eligible=[v for v in complete if v["baseline"]["pass"]]
-    successful=[v for v in eligible if v["swat"]["pass"]]
-    per_task=[{"dataset":v["baseline"]["dataset"],"task_id":v["baseline"]["task_id"],"repetition":v["baseline"].get("repetition",1),"ratio":round(token(v["baseline"])/token(v["swat"]),3) if token(v["swat"])>0 else None,"qualified":token(v["swat"])>0 and token(v["baseline"])/token(v["swat"])>=40} for v in successful]
-    passed_40=sum(x["qualified"] for x in per_task)
-    # Intention-to-treat denominator: every baseline-solved pair, including SWAT failures.
-    success_fraction=passed_40/len(eligible) if eligible else None
+    # Every selected task counts, even if baseline fails, SWAT fails, or one run is missing.
+    # Repetitions remain separate trials; final task-level claims require all repetitions.
+    selected=list(pairs.values())
+    qualified=[]
+    for v in selected:
+        ok=(len(v)==2 and v["baseline"]["pass"] and v["swat"]["pass"]
+            and token(v["swat"])>0 and token(v["baseline"])/token(v["swat"])>=40)
+        qualified.append(ok)
+    passed_40=sum(qualified)
+    success_fraction=passed_40/len(selected) if selected else None
     by_dataset={}
-    for name in sorted(set(v["baseline"]["dataset"] for v in eligible)):
-        subset=[v for v in eligible if v["baseline"]["dataset"]==name]
-        qualified=sum(1 for v in subset if v["swat"]["pass"] and token(v["swat"])>0 and token(v["baseline"])/token(v["swat"])>=40)
-        by_dataset[name]={"eligible":len(subset),"qualified_40x":qualified,"fraction":round(qualified/len(subset),4)}
-    return {"complete_pairs":len(complete),"unpaired":len(pairs)-len(complete),"pass_counts":{"baseline":baseline_success,"swat":swat_success},"total_tokens":agg(token),"uncached_plus_output_tokens":agg(uncached),"elapsed_seconds":agg(lambda r:r["wall_seconds"]),"twenty_x_full_task_tokens_proven":len(complete)>=30 and swat_success>=baseline_success and (agg(token)["ratio"] or 0)>=20,"forty_x_target":{"required_fraction":0.70,"baseline_solved_denominator":len(eligible),"qualified_40x":passed_40,"fraction":round(success_fraction,4) if success_fraction is not None else None,"dataset_breakdown":by_dataset,"minimum_sample_met":len(eligible)>=30 and len(by_dataset)>=3,"achieved":len(eligible)>=30 and len(by_dataset)>=3 and success_fraction is not None and success_fraction>=0.70 and swat_success>=baseline_success},"notes":"No pricing assumption; token totals are not equivalent to billed cost. Check multi-run/task-stratified performance before making claims."}
+    for name in sorted(set(next(iter(v.values()))["dataset"] for v in selected)):
+        subset=[(v,q) for v,q in zip(selected,qualified) if next(iter(v.values()))["dataset"]==name]
+        by_dataset[name]={"evaluated":len(subset),"qualified_40x":sum(q for _,q in subset),"fraction":round(sum(q for _,q in subset)/len(subset),4)}
+    return {"complete_pairs":len(complete),"unpaired":len(pairs)-len(complete),"pass_counts":{"baseline":baseline_success,"swat":swat_success},"total_tokens":agg(token),"uncached_plus_output_tokens":agg(uncached),"elapsed_seconds":agg(lambda r:r["wall_seconds"]),"twenty_x_full_task_tokens_proven":len(complete)>=30 and swat_success>=baseline_success and (agg(token)["ratio"] or 0)>=20,"forty_x_target":{"required_fraction":0.70,"all_selected_denominator":len(selected),"qualified_40x":passed_40,"fraction":round(success_fraction,4) if success_fraction is not None else None,"dataset_breakdown":by_dataset,"minimum_sample_met":len(selected)>=30 and len(by_dataset)>=3,"achieved":len(selected)>=30 and len(by_dataset)>=3 and success_fraction is not None and success_fraction>=0.70 and swat_success>=baseline_success},"notes":"No pricing assumption; token totals are not equivalent to billed cost. Check multi-run/task-stratified performance before making claims."}
 if __name__=="__main__":
     p=argparse.ArgumentParser();p.add_argument("jsonl");a=p.parse_args()
     print(json.dumps(calculate(load(a.jsonl)),indent=2))

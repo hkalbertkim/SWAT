@@ -24,6 +24,16 @@ class Tests(unittest.TestCase):
         r=calculate(rows)
         self.assertEqual(r["forty_x_target"]["fraction"],0.6)
         self.assertFalse(r["forty_x_target"]["achieved"])
+    def test_baseline_failures_still_count(self):
+        rows=[]
+        for i in range(100):
+            a=self.row("baseline",i>=30,4000);b=self.row("swat",True,50)
+            a["task_id"]=str(i);b["task_id"]=str(i)
+            rows.extend((a,b))
+        r=calculate(rows)
+        self.assertEqual(r["forty_x_target"]["all_selected_denominator"],100)
+        self.assertEqual(r["forty_x_target"]["qualified_40x"],70)
+        self.assertEqual(r["forty_x_target"]["fraction"],0.7)
     def test_unpaired(self):
         self.assertEqual(calculate([self.row("baseline")])["unpaired"],1)
 if __name__=="__main__":unittest.main()
