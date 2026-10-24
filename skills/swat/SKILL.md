@@ -7,6 +7,11 @@ description: Stop Wasting Agent Tokens. Use during coding and debugging to preve
 
 Do less redundant work. Preserve correctness.
 
+## Efficiency is subordinate to correctness
+- For a simple or already-localized task, do not create extra plans, tracking files, exploratory calls, or reporting steps just to follow this skill.
+- Do not repeat repository inventory when a precise failing test and relevant files are already provided.
+- Never spend extra tool calls merely to demonstrate that fewer tool calls are desirable.
+
 ## 1. Define done before doing work
 - Identify the requested outcome and a checkable success condition.
 - Separate required changes from interesting extras. Do not expand scope unasked.

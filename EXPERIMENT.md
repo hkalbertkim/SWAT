@@ -18,3 +18,7 @@
 | B1 | On | — | — | — | — | — | — | Unmeasured |
 
 **Evidence rule:** Do not populate the table with estimated or invented outcomes.
+
+## Pilot outcome (2026-10-24)
+
+One completed pair passed 2/2 tests in both variants. Baseline 100,979 input / 525 output tokens, 3 tool calls, 16.8 sec. SWAT 86,800 input / 685 output tokens, 4 calls, 22.2 sec. Additional SWAT trial timed out after 180 sec. Experimental evidence is currently insufficient to claim consistent savings.

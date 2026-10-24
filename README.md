@@ -30,6 +30,23 @@ SWAT prioritizes correctness and safety. It does not skip approvals, security ch
 
 That is an experiment, not a promise. Read [EXPERIMENT.md](EXPERIMENT.md) for an honest side-by-side comparison protocol. A reduction in tool calls does not automatically establish a reduction in provider-billed tokens.
 
+## Measured pilot (Codex CLI, October 24, 2026)
+
+**A useful first signal, not proof of savings.** One matched small Python bug-fix trial (both variants passed two unit tests) produced the following actual Codex usage readings:
+
+| Metric | Without SWAT | With SWAT |
+| --- | ---: | ---: |
+| Input tokens (includes cached) | 100,979 | 86,800 |
+| Cached input tokens | 90,368 | 77,952 |
+| Output tokens | 525 | 685 |
+| Completed tool calls | 3 | 4 |
+| Wall clock time | 16.8 s | 22.2 s |
+| Independent unit tests passed | 2/2 | 2/2 |
+
+Input tokens decreased **14.0% in this single paired observation**, while time and tool calls **increased**. A follow-up SWAT run hit a 180-second timeout and did not produce a comparable result. This is not yet evidence of consistent improvement, nor proof of cost reduction. The tested SWAT rules were injected into the prompt, rather than loaded by an agent's native skill discovery mechanism. The initial run did not counterbalance order.
+
+For the reproducibility protocol and limitations, see [EXPERIMENT.md](EXPERIMENT.md). The [trial runner](benchmarks/run_ab.py) uses Codex JSONL usage events and records timeouts as failures.
+
 ## Why a Skill rather than a framework?
 
 Minimal setup and no new runtime dependency. The official [Agent Skills specification](https://agentskills.io/specification) defines the required `SKILL.md` structure.
