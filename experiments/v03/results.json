@@ -1,0 +1,13 @@
+{
+  "scenario": "20 repeated identical read-only repository searches over immutable files",
+  "requests": 20,
+  "baseline_process_invocations": 20,
+  "deduplicated_process_invocations": 1,
+  "invocation_reduction_factor": 20.0,
+  "baseline_seconds": 0.146,
+  "deduplicated_seconds": 0.0074,
+  "elapsed_speedup": 19.78,
+  "outputs_equal": true,
+  "agent_token_savings": "not measured",
+  "scope": "controlled redundant lookup microbenchmark only"
+}
