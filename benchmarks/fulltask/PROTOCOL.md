@@ -1,47 +1,53 @@
-# SWAT — Full-task 20x benchmark protocol
+# SWAT — 40× on 70%: end-to-end evaluation protocol (2026-10-24)
 
-**Primary question:** Across genuine coding-agent tasks, can SWAT reduce total consumed tokens per successfully completed task by 20× without losing reliability?
+**Research target:** At least 70% of preselected, distinct benchmark tasks must individually achieve **40× or greater reduction in total model input+output tokens**, without reducing task correctness. Do not measure only duplicated shell calls, tool output size, or a 40× average.
 
-## Benchmark coverage
-1. SWE-bench Pro V2 public: long-horizon software changes, multiple languages.
-2. Terminal-Bench 2.0: terminal and operations agent tasks.
-3. SWE-bench multilingual: language and repository diversity.
-4. Held-out recent real user coding tasks, with authorization and full privacy redaction.
-5. Verified and synthetic retry cases for diagnosis ONLY. Do not pool microbenchmarks with entire-task scores.
+For 100 selected tasks, **70 distinct tasks** must qualify. For the official SWE-bench Pro V2 full 642-task split, 450 must qualify. For Terminal-Bench 2.0's 89 tasks, 63 must qualify.
 
-## Critical environment limitations
-MSM2-1 currently has Codex CLI 0.149.1 but does not have Docker or Harbor installed. Terminal-Bench and SWE-bench graders typically rely on isolated environments; do not execute downloaded tasks on the personal host without a sandbox. Acquiring data is not equivalent to graded evaluation.
+## Frozen task lists
 
-## Comparison
-Same model ID, same reasoning effort, same repository base commit, identical user request, tool availability, safety policies, task time budget and environment. Separate fresh worktrees/containers. Alternating order (AB/BA), minimum 3 repetitions per task, randomized seed when supported. No leaked gold patches, network disabled during task execution when benchmark permits. Record authentication and prompt-skill loading method; native SKILL.md loading separately tested from prompt injection.
+- [SWE-bench Pro V2 stratified 100-task pilot](swebench_pro_v2_pilot100.json)
+- [SWE-bench Pro V2 full 642 tasks](swebench_pro_v2_full642.json)
+- [Terminal-Bench 2.0 full 89 tasks](terminal_bench2_full89.json)
 
-## Metrics / gates
-Primary: *actual cost per solved task*, using provider token categories and applicable price/rate accounting. Where pricing is unavailable, show raw input, cached input and output separately. Compare paired task success, correctness regressions, end-to-end latency and model/tool calls. Count timeouts and skipped validations as failures. Require minimum 30 paired tasks in 3 different domains before any aggregate headline, and follow with full official task sets where practical.
+Both upstream source commits are pinned. Do not substitute only easy tasks after viewing results or change selection to improve the metric. A pilot claim is limited to its 100 selected tasks; it is not a full-benchmark claim.
 
-Predefined success rule: >=20x ratio with at least baseline pass rate, measured on whole task including loading skill, retries, cache overhead and verification. State the dataset and subset coverage exactly. No selective exclusion of poor runs.
+## Per-task qualification
 
-## Measurement schema
-JSONL one row per task run:
+1. Run baseline and SWAT on the same task from identical repository base commits, with the same model, reasoning effort, tool access, fixed resources, safety policy and task timeout.
+2. Run each variant three times using isolated containers or an equivalently trustworthy sandbox; alternate the run order. Do not expose the benchmark's reference patch to either agent.
+3. All six executions must pass the benchmark's independent verifier. Missing, failed, and timed-out runs count against the target.
+4. In each paired repetition, measure all model usage (including the skill instructions, work and verification). Compute `baseline_total_tokens / swat_total_tokens`. A task qualifies if the median of its three paired ratios is at least 40×.
+5. Each selected task counts **once** toward numerator and denominator. Only an explicit, pre-registered manifest defines the denominator.
+6. Preserve actual cached input counts and report billed costs separately if reliable provider rates are available. Total tokens and dollars are different metrics.
+7. Maintain equal or better overall task success counts. Report performance by benchmark and source repository.
+
+## Data integrity
+
+A result row is genuine measured data, not estimated:
+
 ```json
-{"dataset":"example","task_id":"task-1","repetition":1,"variant":"baseline","pass":true,"input_tokens":1200,"cached_input_tokens":100,"output_tokens":200,"wall_seconds":50.0}
+{"dataset":"swe-bench-pro-v2/example","task_id":"example","repetition":1,"variant":"baseline","pass":true,"input_tokens":1200,"cached_input_tokens":100,"output_tokens":200,"wall_seconds":50.0}
 ```
-Use `python3 benchmarks/fulltask/evaluate.py results.jsonl` only on real captured runs. The evaluator deliberately does not read SWAT search microbenchmarks.
 
-## Product pivot gate
-If standalone skill fails to improve full-task outcomes, test alternate public approaches: progressive disclosure, selective output reduction, safe tool-call reuse with invalidation, and context compaction. Compare as distinct arms, not cumulative tuning. Keep SWAT V0 minimal; do not mix external runtimes into its advertised results.
+Use:
+```bash
+python3 benchmarks/fulltask/evaluate.py observed.jsonl --manifest benchmarks/fulltask/swebench_pro_v2_pilot100.json --summary-only
+python3 -m unittest discover -s benchmarks/fulltask -p 'test_*.py'
+```
 
-## Relevant references
-- https://labs.scale.com/leaderboard/swe_bench_pro_public_v2?tab=full
-- https://www.tbench.ai/?version=2.0
-- https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/datasets.md
-- https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/
+Tasks with no observations stay in the selected denominator, and results outside the manifest are rejected. The report cannot return an achieved 40×/70% gate with fewer than 30 tasks, fewer than three repetitions, absent manifest, or degraded success rates.
 
-## Revised research gate — 2026-10-24: 40× on at least 70% of tasks
+## Current status
 
-40× is evaluated on **total actual model tokens over each completed coding task**, not just duplicated searches, single prompt sections, or wall-clock microbenchmarks. Count skill loading, retries, model turns and verification. Every preselected task is in the denominator. Both baseline and SWAT must successfully solve the task for it to qualify. Baseline failure, SWAT failure, missing runs and timeouts all count as non-qualifying, not excluded. Qualifying ratio: baseline total input-plus-output tokens divided by SWAT total input-plus-output tokens >=40. Report cached-input and billed-cost figures separately.
+Read [STATUS-2026-10-24.md](STATUS-2026-10-24.md) for exact coverage, provenance, pilot measurements, and blockers. Do not mix the 20–40× controlled search microbenchmarks into full agent performance.
 
-A preliminary gate needs at least 30 preselected tasks spanning 3 datasets, at least 70% of which qualify, no decline in overall success counts, and per-dataset results disclosed. Then expand to held-out tasks and official full suites before making a broad product-performance claim. Avoid cherry-picking datasets or claiming representative coverage from only 30 samples. For 100 preselected tasks the threshold is at least 70 distinct tasks meeting >=40× each, not a 40× average. Repeat runs must be aggregated by task without counting a task multiple times. Do not move the goalpost after observing results.
+## Genuine execution requirements
 
-Previous 20× aggregate metric remains in the scorer for historical comparisons; **40× / 70% is now the research target**. This is not yet a measured outcome.
+SWE-bench Pro V2 provides pinned public task images and Harbor verifiers. Terminal-Bench requires isolated task containers. MSM2-1 currently has Codex CLI and Colima installed, but Colima is not running and Docker CLI/Harbor were not found. Benchmarks must not execute untrusted scripts directly on the personal Mac. Dataset discovery is not task completion.
 
-Relevant evidence: Microsoft's October 2026 CompactionBench report reduced task cost up to 25.4%, an indication of how challenging broad 40× savings are. https://www.microsoft.com/en-us/research/publication/benchmarking-long-horizon-agent-context-compaction-with-compactionbench/
+## Evolution path
+
+If 40× on at least 70% is not achieved by the standalone SKILL.md, test independent public techniques—selective context loading, validated artifact reuse, safe read-only tool-call deduplication with invalidation, deterministic routing—each with its own separate evidence. Do not claim that a runtime interceptor's performance comes from the standalone Skill.
+
+Sources: [SWE-bench Pro V2](https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md), [Terminal-Bench 2.0](https://github.com/harbor-framework/terminal-bench-2), [Agent Skills](https://agentskills.io/specification).

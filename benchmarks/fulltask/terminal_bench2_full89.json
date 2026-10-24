@@ -1,0 +1,368 @@
+{
+  "benchmark": "Terminal-Bench 2.0",
+  "split": "full-89",
+  "source": "https://github.com/harbor-framework/terminal-bench-2",
+  "source_commit": "2fd12b88aafdd04a52c298e3940bcb189f9766d6",
+  "source_tree": "ec7c02c7f0b59ce8ed2f7c88d1e70cda7427edfa",
+  "expected_repetitions": 3,
+  "task_count": 89,
+  "tasks": [
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "adaptive-rejection-sampler"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "bn-fit-modify"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "break-filter-js-from-html"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "build-cython-ext"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "build-pmars"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "build-pov-ray"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "caffe-cifar-10"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "cancel-async-tasks"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "chess-best-move"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "circuit-fibsqrt"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "cobol-modernization"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "code-from-image"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "compile-compcert"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "configure-git-webserver"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "constraints-scheduling"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "count-dataset-tokens"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "crack-7z-hash"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "custom-memory-heap-crash"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "db-wal-recovery"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "distribution-search"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "dna-assembly"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "dna-insert"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "extract-elf"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "extract-moves-from-video"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "feal-differential-cryptanalysis"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "feal-linear-cryptanalysis"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "filter-js-from-html"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "financial-document-processor"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "fix-code-vulnerability"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "fix-git"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "fix-ocaml-gc"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "gcode-to-text"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "git-leak-recovery"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "git-multibranch"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "gpt2-codegolf"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "headless-terminal"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "hf-model-inference"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "install-windows-3.11"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "kv-store-grpc"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "large-scale-text-editing"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "largest-eigenval"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "llm-inference-batching-scheduler"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "log-summary-date-ranges"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "mailman"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "make-doom-for-mips"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "make-mips-interpreter"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "mcmc-sampling-stan"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "merge-diff-arc-agi-task"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "model-extraction-relu-logits"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "modernize-scientific-stack"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "mteb-leaderboard"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "mteb-retrieve"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "multi-source-data-merger"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "nginx-request-logging"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "openssl-selfsigned-cert"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "overfull-hbox"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "password-recovery"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "path-tracing"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "path-tracing-reverse"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "polyglot-c-py"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "polyglot-rust-c"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "portfolio-optimization"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "protein-assembly"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "prove-plus-comm"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "pypi-server"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "pytorch-model-cli"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "pytorch-model-recovery"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "qemu-alpine-ssh"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "qemu-startup"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "query-optimize"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "raman-fitting"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "regex-chess"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "regex-log"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "reshard-c4-data"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "rstan-to-pystan"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "sam-cell-seg"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "sanitize-git-repo"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "schemelike-metacircular-eval"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "sparql-university"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "sqlite-db-truncate"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "sqlite-with-gcov"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "torch-pipeline-parallelism"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "torch-tensor-parallelism"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "train-fasttext"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "tune-mjcf"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "video-processing"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "vulnerable-secret"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "winning-avg-corewars"
+    },
+    {
+      "dataset": "terminal-bench-2.0",
+      "task_id": "write-compressor"
+    }
+  ],
+  "claim_policy": "Official isolated verifier required; read-only task listing is not evaluation."
+}

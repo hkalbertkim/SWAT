@@ -1,0 +1,2 @@
+{"dataset": "internal-codex-bugfix", "task_id": "normalize-none-input", "repetition": 1, "variant": "baseline", "pass": true, "input_tokens": 100979, "cached_input_tokens": 90368, "output_tokens": 525, "wall_seconds": 16.8}
+{"dataset": "internal-codex-bugfix", "task_id": "normalize-none-input", "repetition": 1, "variant": "swat", "pass": true, "input_tokens": 86800, "cached_input_tokens": 77952, "output_tokens": 685, "wall_seconds": 22.2}

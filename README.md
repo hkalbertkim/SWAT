@@ -47,6 +47,12 @@ Input tokens decreased **14.0% in this single paired observation**, while time a
 
 For the reproducibility protocol and limitations, see [EXPERIMENT.md](EXPERIMENT.md). The [trial runner](benchmarks/run_ab.py) uses Codex JSONL usage events and records timeouts as failures.
 
+## Whole-agent evaluation: 40× / 70% research target
+
+We have pre-registered [100 SWE-bench Pro V2 tasks](benchmarks/fulltask/swebench_pro_v2_pilot100.json) and [all 89 Terminal-Bench 2.0 tasks](benchmarks/fulltask/terminal_bench2_full89.json). The goal is **40× total model-token reduction on at least 70% of distinct tasks**, with correctness maintained—not a 40× average. The official task suites have **not been executed yet**. [Full protocol and current status](benchmarks/fulltask/STATUS-2026-10-24.md).
+
+A previous one-task measured Codex pilot showed only **1.16× total tokens** (101,504 → 87,485), not 40×. This is a research target, not a performance claim. See the [sanitized pilot observation](benchmarks/fulltask/pilot_observations.jsonl).
+
 ## Why a Skill rather than a framework?
 
 Minimal setup and no new runtime dependency. The official [Agent Skills specification](https://agentskills.io/specification) defines the required `SKILL.md` structure.

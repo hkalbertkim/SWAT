@@ -1,0 +1,13 @@
+{
+  "benchmark": "SWAT internal Codex controlled bugfix pilot",
+  "split": "historical-single-pair-2026-10-24",
+  "expected_repetitions": 1,
+  "task_count": 1,
+  "tasks": [
+    {
+      "dataset": "internal-codex-bugfix",
+      "task_id": "normalize-none-input"
+    }
+  ],
+  "claim_policy": "Informational pilot only. NOT an official benchmark; not native SKILL loading."
+}
