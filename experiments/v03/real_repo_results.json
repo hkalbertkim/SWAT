@@ -1,0 +1,123 @@
+{
+  "results": [
+    {
+      "pattern": "heavy-retry",
+      "calls": 30,
+      "unique_calls": 1,
+      "invocation_reduction_x": 30.0,
+      "elapsed_speedup_x": 30.29,
+      "baseline_seconds": 0.2722,
+      "reuse_seconds": 0.009,
+      "exact_match": true,
+      "repo": "requests",
+      "upstream": "https://github.com/psf/requests.git",
+      "commit": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60"
+    },
+    {
+      "pattern": "mixed-retry",
+      "calls": 30,
+      "unique_calls": 3,
+      "invocation_reduction_x": 10.0,
+      "elapsed_speedup_x": 10.03,
+      "baseline_seconds": 0.267,
+      "reuse_seconds": 0.0266,
+      "exact_match": true,
+      "repo": "requests",
+      "upstream": "https://github.com/psf/requests.git",
+      "commit": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60"
+    },
+    {
+      "pattern": "mostly-unique",
+      "calls": 30,
+      "unique_calls": 30,
+      "invocation_reduction_x": 1.0,
+      "elapsed_speedup_x": 0.99,
+      "baseline_seconds": 0.2668,
+      "reuse_seconds": 0.2682,
+      "exact_match": true,
+      "repo": "requests",
+      "upstream": "https://github.com/psf/requests.git",
+      "commit": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60"
+    },
+    {
+      "pattern": "heavy-retry",
+      "calls": 30,
+      "unique_calls": 1,
+      "invocation_reduction_x": 30.0,
+      "elapsed_speedup_x": 30.89,
+      "baseline_seconds": 0.2925,
+      "reuse_seconds": 0.0095,
+      "exact_match": true,
+      "repo": "click",
+      "upstream": "https://github.com/pallets/click.git",
+      "commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6"
+    },
+    {
+      "pattern": "mixed-retry",
+      "calls": 30,
+      "unique_calls": 3,
+      "invocation_reduction_x": 10.0,
+      "elapsed_speedup_x": 10.06,
+      "baseline_seconds": 0.2908,
+      "reuse_seconds": 0.0289,
+      "exact_match": true,
+      "repo": "click",
+      "upstream": "https://github.com/pallets/click.git",
+      "commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6"
+    },
+    {
+      "pattern": "mostly-unique",
+      "calls": 30,
+      "unique_calls": 30,
+      "invocation_reduction_x": 1.0,
+      "elapsed_speedup_x": 1.01,
+      "baseline_seconds": 0.2894,
+      "reuse_seconds": 0.2872,
+      "exact_match": true,
+      "repo": "click",
+      "upstream": "https://github.com/pallets/click.git",
+      "commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6"
+    },
+    {
+      "pattern": "heavy-retry",
+      "calls": 30,
+      "unique_calls": 1,
+      "invocation_reduction_x": 30.0,
+      "elapsed_speedup_x": 29.77,
+      "baseline_seconds": 0.2902,
+      "reuse_seconds": 0.0097,
+      "exact_match": true,
+      "repo": "flask",
+      "upstream": "https://github.com/pallets/flask.git",
+      "commit": "d086db856be187255b8ec61ef409357393020f32"
+    },
+    {
+      "pattern": "mixed-retry",
+      "calls": 30,
+      "unique_calls": 3,
+      "invocation_reduction_x": 10.0,
+      "elapsed_speedup_x": 9.9,
+      "baseline_seconds": 0.2895,
+      "reuse_seconds": 0.0292,
+      "exact_match": true,
+      "repo": "flask",
+      "upstream": "https://github.com/pallets/flask.git",
+      "commit": "d086db856be187255b8ec61ef409357393020f32"
+    },
+    {
+      "pattern": "mostly-unique",
+      "calls": 30,
+      "unique_calls": 30,
+      "invocation_reduction_x": 1.0,
+      "elapsed_speedup_x": 1.0,
+      "baseline_seconds": 0.289,
+      "reuse_seconds": 0.2899,
+      "exact_match": true,
+      "repo": "flask",
+      "upstream": "https://github.com/pallets/flask.git",
+      "commit": "d086db856be187255b8ec61ef409357393020f32"
+    }
+  ],
+  "scope": "Real public repositories, synthetic query sequences, read-only git grep, no model agent tokens measured",
+  "date": "2026-10-24"
+}
