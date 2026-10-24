@@ -35,3 +35,13 @@ If standalone skill fails to improve full-task outcomes, test alternate public a
 - https://www.tbench.ai/?version=2.0
 - https://github.com/SWE-bench/SWE-bench/blob/main/docs/guides/datasets.md
 - https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/
+
+## Revised research gate — 2026-10-24: 40× on at least 70% of tasks
+
+40× is evaluated on **total actual model tokens over each completed coding task**, not just duplicated searches, single prompt sections, or wall-clock microbenchmarks. Count skill loading, retries, model turns and verification. For each paired run, the baseline must successfully solve the task and SWAT must also succeed; unsuccessful SWAT runs are counted as non-qualifying, not excluded. Qualifying ratio: baseline total input-plus-output tokens divided by SWAT total input-plus-output tokens >=40. Report cached-input and billed-cost figures separately.
+
+A preliminary gate needs at least 30 baseline-solved paired runs spanning 3 datasets, at least 70% of which qualify, no decline in overall success counts, and per-dataset results disclosed. Then expand to held-out tasks and official full suites before making a broad product-performance claim. Avoid cherry-picking datasets or claiming representative coverage from only 30 samples. Do not move the goalpost after observing results.
+
+Previous 20× aggregate metric remains in the scorer for historical comparisons; **40× / 70% is now the research target**. This is not yet a measured outcome.
+
+Relevant evidence: Microsoft's October 2026 CompactionBench report reduced task cost up to 25.4%, an indication of how challenging broad 40× savings are. https://www.microsoft.com/en-us/research/publication/benchmarking-long-horizon-agent-context-compaction-with-compactionbench/

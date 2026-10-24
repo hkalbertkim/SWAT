@@ -11,6 +11,19 @@ class Tests(unittest.TestCase):
         result=calculate([self.row("baseline",True,200),self.row("swat",False,10)])
         self.assertEqual(result["pass_counts"]["swat"],0)
         self.assertFalse(result["twenty_x_full_task_tokens_proven"])
+    def test_forty_x_one_case_not_sufficient(self):
+        r=calculate([self.row("baseline",True,4000),self.row("swat",True,50)])
+        self.assertEqual(r["forty_x_target"]["fraction"],1.0)
+        self.assertFalse(r["forty_x_target"]["achieved"])
+    def test_forty_x_failures_count_against_target(self):
+        rows=[]
+        for i in range(10):
+            a=self.row("baseline",True,4000);b=self.row("swat",i<6,50)
+            a["task_id"]=str(i);b["task_id"]=str(i)
+            rows.extend((a,b))
+        r=calculate(rows)
+        self.assertEqual(r["forty_x_target"]["fraction"],0.6)
+        self.assertFalse(r["forty_x_target"]["achieved"])
     def test_unpaired(self):
         self.assertEqual(calculate([self.row("baseline")])["unpaired"],1)
 if __name__=="__main__":unittest.main()
